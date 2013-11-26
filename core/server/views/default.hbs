@@ -16,10 +16,10 @@
     <meta name="apple-mobile-web-app-capable" content="yes" />
 
     <link rel="shortcut icon" href="/favicon.ico">
-    <link rel="apple-touch-icon-precomposed" href="/ghost/img/touch-icon-iphone.png" />
-    <link rel="apple-touch-icon-precomposed" sizes="76x76" href="/ghost/img/touch-icon-ipad.png" />
-    <link rel="apple-touch-icon-precomposed" sizes="120x120" href="/ghost/img/small.png" />
-    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="/ghost/img/medium.png" />
+    <link rel="apple-touch-icon-precomposed" href="{{url}}/ghost/img/touch-icon-iphone.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="76x76" href="{{url}}/ghost/img/touch-icon-ipad.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="120x120" href="{{url}}/ghost/img/small.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="{{url}}/ghost/img/medium.png" />
 
     <meta name="application-name" content="Ghost"/>
     <meta name="msapplication-TileColor" content="#ffffff"/>
@@ -28,7 +28,7 @@
     <meta name="msapplication-square310x310logo" content="/ghost/img/large.png"/>
 
     <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Open+Sans:400,300,700">
-    <link rel="stylesheet" href="/ghost/css/screen.css">
+    <link rel="stylesheet" href="{{url}}/ghost/css/screen.css">
     {{{block "pageStyles"}}}
 </head>
 <body class="{{bodyClass}}">
@@ -53,8 +53,10 @@
     </div>
     <div class="modal-background fade"></div>
 
+    {{{ghostScriptConfig}}}
     {{{ghostScriptTags}}}
 
     {{{block "bodyScripts"}}}
+
 </body>
 </html>

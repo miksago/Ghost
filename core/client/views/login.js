@@ -35,7 +35,7 @@
                 Ghost.Validate.handleErrors();
             } else {
                 $.ajax({
-                    url: '/ghost/signin/',
+                    url: Ghost.settings.root + '/signin/',
                     type: 'POST',
                     headers: {
                         'X-CSRF-Token': $("meta[name='csrf-param']").attr('content')
@@ -100,7 +100,7 @@
                 Ghost.Validate.handleErrors();
             } else {
                 $.ajax({
-                    url: '/ghost/signup/',
+                    url: Ghost.settings.root + '/signup/',
                     type: 'POST',
                     headers: {
                         'X-CSRF-Token': $("meta[name='csrf-param']").attr('content')
@@ -157,7 +157,7 @@
                 Ghost.Validate.handleErrors();
             } else {
                 $.ajax({
-                    url: '/ghost/forgotten/',
+                    url: Ghost.settings.root + '/forgotten/',
                     type: 'POST',
                     headers: {
                         'X-CSRF-Token': $("meta[name='csrf-param']").attr('content')
@@ -224,7 +224,7 @@
             this.$('input, button').prop('disabled', true);
 
             $.ajax({
-                url: '/ghost/reset/' + this.token + '/',
+                url: Ghost.settings.root + '/reset/' + this.token + '/',
                 type: 'POST',
                 headers: {
                     'X-CSRF-Token': $("meta[name='csrf-param']").attr('content')

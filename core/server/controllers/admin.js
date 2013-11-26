@@ -87,9 +87,13 @@ adminControllers = {
             api.users.check({email: req.body.email, pw: req.body.password}).then(function (user) {
                 req.session.regenerate(function (err) {
                     if (!err) {
+                        var root = ghost.blogGlobals().path === '/' ? '' : ghost.blogGlobals().path;
+                        var redirect = root + '/ghost/';
+
                         req.session.user = user.id;
-                        res.json(200, {redirect: req.body.redirect ? '/ghost/'
-                            + decodeURIComponent(req.body.redirect) : '/ghost/'});
+                        res.json(200, {
+                            redirect: req.body.redirect ? redirect + decodeURIComponent(req.body.redirect) : redirect
+                        });
                     }
                 });
             }, function (error) {

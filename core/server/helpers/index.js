@@ -251,6 +251,24 @@ coreHelpers.ghostScriptTags = function () {
     return scriptFiles.join('');
 };
 
+coreHelpers.ghostScriptConfig = function () {
+    var blog = coreHelpers.ghost.blogGlobals();
+    var tag = [];
+
+    tag.push('<script type="text/javascript">');
+    tag.push('window.GHOST_SETTINGS = ')
+    tag.push(
+        JSON.stringify({
+            apiRoot: blog.path + '/ghost/api/v0.1',
+            root: blog.path + '/ghost'
+        })
+    );
+    tag.push(';');
+    tag.push('</script>');
+
+    return new hbs.handlebars.SafeString(tag.join(''));
+};
+
 /*
  * Asynchronous Theme Helpers (Registered with ghost.registerAsyncThemeHelper)
  */
@@ -559,6 +577,8 @@ registerHelpers = function (ghost, config) {
     ghost.registerThemeHelper('fileStorage', coreHelpers.fileStorage);
 
     ghost.registerThemeHelper('ghostScriptTags', coreHelpers.ghostScriptTags);
+
+    ghost.registerThemeHelper('ghostScriptConfig', coreHelpers.ghostScriptConfig);
 
     ghost.registerThemeHelper('e', coreHelpers.e);
 

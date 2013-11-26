@@ -9,9 +9,7 @@
         Models      : {},
         Validate    : new Validator(),
 
-        settings: {
-            apiRoot: '/ghost/api/v0.1'
-        },
+        settings: window.GHOST_SETTINGS,
 
         // This is a helper object to denote legacy things in the
         // middle of being transitioned.
@@ -46,7 +44,7 @@
         Backbone.history.start({
             pushState: true,
             hashChange: false,
-            root: '/ghost'
+            root: Ghost.settings.root
         });
     };
 
