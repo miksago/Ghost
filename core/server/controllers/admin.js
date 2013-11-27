@@ -90,7 +90,7 @@ adminControllers = {
                     if (!err) {
                         req.session.user = user.id;
                         var redirect = root + '/ghost/';
-                        if(req.body.redirect){
+                        if (req.body.redirect) {
                             redirect += decodeURIComponent(req.body.redirect);
                         }
 
@@ -198,9 +198,8 @@ adminControllers = {
         });
     },
     'reset': function (req, res) {
-        var root = ghost.blogGlobals().path === '/' ? '' : ghost.blogGlobals().path;
-        // Validate the request token
-        var token = req.params.token;
+        var root = ghost.blogGlobals().path === '/' ? '' : ghost.blogGlobals().path,
+            token = req.params.token; // Validate the request token
 
         api.users.validateToken(token).then(function () {
             // Render the reset form
@@ -226,9 +225,8 @@ adminControllers = {
         });
     },
     'resetPassword': function (req, res) {
-        var root = ghost.blogGlobals().path === '/' ? '' : ghost.blogGlobals().path;
-
-        var token = req.params.token,
+        var root = ghost.blogGlobals().path === '/' ? '' : ghost.blogGlobals().path,
+            token = req.params.token,
             newPassword = req.param('newpassword'),
             ne2Password = req.param('ne2password');
 
@@ -251,7 +249,6 @@ adminControllers = {
     'logout': function (req, res) {
         req.session.destroy();
 
-        var root = ghost.blogGlobals().path === '/' ? '' : ghost.blogGlobals().path,
         var notification = {
             type: 'success',
             message: 'You were successfully signed out',
@@ -260,6 +257,8 @@ adminControllers = {
         };
 
         return api.notifications.add(notification).then(function () {
+            var root = ghost.blogGlobals().path === '/' ? '' : ghost.blogGlobals().path;
+
             res.redirect(root + '/ghost/signin/');
         });
     },
