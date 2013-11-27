@@ -126,13 +126,13 @@ coreHelpers.asset = function (context, options) {
         subDir = coreHelpers.ghost.blogGlobals().path,
         isAdmin = options && options.hash && options.hash.ghost;
 
-    if(subDir === '/') {
+    if (subDir === '/') {
         output += '/';
     } else {
         output += subDir + '/';
     }
 
-    if(isAdmin) {
+    if (isAdmin) {
         output += 'ghost/';
     }
     output += context;

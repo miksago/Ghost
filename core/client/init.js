@@ -2,7 +2,7 @@
 (function () {
     'use strict';
 
-    var ghostPaths = function() {
+    function ghostPaths() {
         var path = window.location.pathname,
             root = path.substr(0, path.search('/ghost/'));
 
@@ -10,7 +10,7 @@
             ghostRoot: root,
             apiRoot: root + '/ghost/api/v0.1'
         };
-    };
+    }
 
     var Ghost = {
         Layout      : {},
