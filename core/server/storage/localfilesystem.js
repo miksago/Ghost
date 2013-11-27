@@ -3,12 +3,14 @@
 
 var _       = require('underscore'),
     express = require('express'),
+    Ghost   = require('../../ghost'),
     fs      = require('fs-extra'),
     nodefn  = require('when/node/function'),
     path    = require('path'),
     when    = require('when'),
     errors  = require('../errorHandling'),
     baseStore   = require('./base'),
+    ghost   = new Ghost(),
 
     localFileStore,
     localDir = 'content/images';
@@ -19,7 +21,8 @@ localFileStore = _.extend(baseStore, {
     // - image is the express image object
     // - returns a promise which ultimately returns the full url to the uploaded image
     'save': function (image) {
-        var saved = when.defer(),
+        var root = ghost.blogGlobals().path === '/' ? '' : ghost.blogGlobals().path,
+            saved = when.defer(),
             targetDir = this.getTargetDir(localDir);
 
         this.getUniqueFileName(this, image, targetDir).then(function (filename) {
@@ -31,7 +34,7 @@ localFileStore = _.extend(baseStore, {
             }).then(function () {
                 // The src for the image must be in URI format, not a file system path, which in Windows uses \
                 // For local file system storage can use relative path so add a slash
-                var fullUrl = ('/' + filename).replace(new RegExp('\\' + path.sep, 'g'), '/');
+                var fullUrl = root + ('/' + filename).replace(new RegExp('\\' + path.sep, 'g'), '/');
                 return saved.resolve(fullUrl);
             }).otherwise(function (e) {
                 errors.logError(e);
